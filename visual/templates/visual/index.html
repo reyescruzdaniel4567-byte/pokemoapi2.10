@@ -1,0 +1,124 @@
+{% extends 'visual/base.html' %}
+
+{% block titulo %}Inicio - Pokédex{% endblock %}
+
+{% block contenido %}
+
+    <section id="pokemons" class="seccion">
+        <div class="seccion-encabezado">
+            <h2>Pokémon</h2>
+            <a href="{% url 'pokemon_crear' %}" class="btn-nuevo">+ Nuevo Pokémon</a>
+        </div>
+
+        <div class="grilla">
+            {% for pokemon in pokemons %}
+            <article class="tarjeta tipo-{{ pokemon.naturaleza }}">
+                <div class="tarjeta-imagen">
+                    {% if pokemon.imagen %}
+                        <img src="{{ pokemon.imagen.url }}" alt="{{ pokemon.nombre }}">
+                    {% else %}
+                        <span class="sin-imagen">?</span>
+                    {% endif %}
+                </div>
+
+                <div class="tarjeta-cuerpo">
+                    <h3>{{ pokemon.nombre }}</h3>
+                    <span class="etiqueta">{{ pokemon.get_naturaleza_display }}</span>
+
+                    <ul class="datos">
+                        <li><strong>Peso:</strong> {{ pokemon.peso }} kg</li>
+                        <li><strong>Habilidades:</strong> {{ pokemon.habilidades }}</li>
+                        <li>
+                            <strong>Entrenador:</strong>
+                            {% if pokemon.entrenador %}
+                                {{ pokemon.entrenador.nombre }} {{ pokemon.entrenador.apellido }}
+                            {% else %}
+                                Sin entrenador
+                            {% endif %}
+                        </li>
+                    </ul>
+
+                    <p class="descripcion">{{ pokemon.descripcion }}</p>
+                  
+                    
+                    <div class="tarjeta-acciones">
+                        <a href="{% url 'pokemon_editar' pokemon.pk %}" class="btn-crud btn-editar">Editar</a>
+                        <a href="{% url 'pokemon_eliminar' pokemon.pk %}" class="btn-crud btn-eliminar-rojo">Eliminar</a>
+                    </div>
+                </div>
+            </article>
+            {% empty %}
+            <p class="vacio">No hay Pokémon registrados.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+   
+    <section id="entrenadores" class="seccion">
+        <div class="seccion-encabezado">
+            <h2>Entrenadores</h2>
+            <a href="{% url 'entrenador_crear' %}" class="btn-nuevo">+ Nuevo Entrenador</a>
+        </div>
+
+        <div class="tabla-envoltura">
+            <table class="tabla">
+                <thead>
+                    <tr>
+                        <th>Documento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Medallas</th>
+                        <th>Pokémon</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entrenador in entrenadores %}
+                    <tr>
+                        <td>{{ entrenador.id_documento }}</td>
+                        <td>{{ entrenador.nombre }}</td>
+                        <td>{{ entrenador.apellido }}</td>
+                        <td>{{ entrenador.medallas }}</td>
+                        <td>{{ entrenador.pokemons.count }}</td>
+                        <td>
+                            <div class="tarjeta-acciones">
+                                <a href="{% url 'entrenador_editar' entrenador.pk %}" class="btn-crud btn-editar">Editar</a>
+                                <a href="{% url 'entrenador_eliminar' entrenador.pk %}" class="btn-crud btn-eliminar-rojo">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="vacio">No hay entrenadores registrados.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="gimnasios" class="seccion">
+        <div class="seccion-encabezado">
+            <h2>Gimnasios</h2>
+            <a href="{% url 'gimnasio_crear' %}" class="btn-nuevo">+ Nuevo Gimnasio</a>
+        </div>
+
+        <div class="grilla">
+            {% for gimnasio in gimnasios %}
+            <article class="tarjeta-gym">
+                <h3>Gimnasio {{ gimnasio.naturaleza_del_gym }}</h3>
+                <p><strong>Líder:</strong> {{ gimnasio.lider_del_gym.nombre }} {{ gimnasio.lider_del_gym.apellido }}</p>
+                <p><strong>Medalla:</strong> {{ gimnasio.medallas }}</p>
+                
+                <div class="tarjeta-acciones">
+                    <a href="{% url 'gimnasio_editar' gimnasio.pk %}" class="btn-crud btn-editar">Editar</a>
+                    <a href="{% url 'gimnasio_eliminar' gimnasio.pk %}" class="btn-crud btn-eliminar-rojo">Eliminar</a>
+                </div>
+            </article>
+            {% empty %}
+            <p class="vacio">No hay gimnasios registrados.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}

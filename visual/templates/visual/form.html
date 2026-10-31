@@ -1,0 +1,15 @@
+{% extends 'visual/base.html' %}
+
+{% block titulo %}{{ titulo }} - Pokédex{% endblock %}
+
+{% block contenido %}
+<section class="seccion">
+    <h2>{{ titulo }}</h2>
+    <form method="post" enctype="multipart/form-data" class="formulario">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primario">Guardar</button>
+        <a href="{% url 'home' %}" class="btn btn-secundario">Cancelar</a>
+    </form>
+</section>
+{% endblock %}

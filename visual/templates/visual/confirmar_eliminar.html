@@ -1,0 +1,13 @@
+{% extends 'visual/base.html' %}
+
+{% block contenido %}
+<section class="seccion">
+    <h2>Eliminar</h2>
+    <form method="post" class="formulario">
+        {% csrf_token %}
+        <p>¿Seguro que quieres eliminar <strong>{{ object }}</strong>? Esta acción no se puede deshacer.</p>
+        <button type="submit" class="btn btn-peligro">Sí, eliminar</button>
+        <a href="{% url 'home' %}" class="btn btn-secundario">Cancelar</a>
+    </form>
+</section>
+{% endblock %}

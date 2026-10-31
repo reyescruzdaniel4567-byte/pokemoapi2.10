@@ -1,0 +1,312 @@
+
+:root {
+    --rojo: #e3350d;
+    --rojo-oscuro: #b3280a;
+    --fondo: #f4f5f7;
+    --blanco: #ffffff;
+    --texto: #222831;
+    --texto-suave: #6b7280;
+    --borde: #e5e7eb;
+    --radio: 14px;
+    --sombra: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    line-height: 1.5;
+}
+
+
+.encabezado {
+    background: var(--rojo);
+    color: var(--blanco);
+    padding: 1.2rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 5px solid var(--rojo-oscuro);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.encabezado h1 {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+.menu {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.menu a {
+    color: var(--blanco);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    transition: background 0.2s;
+}
+
+.menu a:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+
+.contenedor {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.seccion {
+    margin-bottom: 3rem;
+    scroll-margin-top: 90px;
+}
+
+.seccion h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 3px solid var(--rojo);
+    display: inline-block;
+}
+
+.grilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.vacio {
+    color: var(--texto-suave);
+    font-style: italic;
+}
+
+
+.tarjeta {
+    --color-tipo: #a8a878; /* por defecto: Normal */
+    background: var(--blanco);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    overflow: hidden;
+    border-top: 6px solid var(--color-tipo);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
+}
+
+.tarjeta-imagen {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--color-tipo) 18%, white);
+}
+
+.tarjeta-imagen img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.sin-imagen {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-tipo);
+    opacity: 0.6;
+}
+
+.tarjeta-cuerpo {
+    padding: 1rem 1.2rem 1.3rem;
+}
+
+.tarjeta-cuerpo h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.4rem;
+}
+
+.etiqueta {
+    display: inline-block;
+    background: var(--color-tipo);
+    color: var(--blanco);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.15rem 0.8rem;
+    border-radius: 20px;
+    margin-bottom: 0.8rem;
+}
+
+.datos {
+    list-style: none;
+    font-size: 0.92rem;
+    margin-bottom: 0.8rem;
+}
+
+.datos li {
+    padding: 0.2rem 0;
+    border-bottom: 1px dashed var(--borde);
+}
+
+.descripcion {
+    font-size: 0.88rem;
+    color: var(--texto-suave);
+}
+
+
+.tipo-PL { --color-tipo: #78c850; } /* Planta */
+.tipo-FU { --color-tipo: #f08030; } /* Fuego */
+.tipo-AG { --color-tipo: #6890f0; } /* Agua */
+.tipo-EL { --color-tipo: #f8d030; } /* Eléctrico */
+.tipo-NO { --color-tipo: #a8a878; } /* Normal */
+.tipo-PS { --color-tipo: #f85888; } /* Psíquico */
+.tipo-LU { --color-tipo: #c03028; } /* Lucha */
+.tipo-VE { --color-tipo: #a040a0; } /* Veneno */
+.tipo-TI { --color-tipo: #e0c068; } /* Tierra */
+.tipo-VO { --color-tipo: #a890f0; } /* Volador */
+.tipo-RO { --color-tipo: #b8a038; } /* Roca */
+.tipo-BI { --color-tipo: #a8b820; } /* Bicho */
+.tipo-FA { --color-tipo: #705898; } /* Fantasma */
+.tipo-DR { --color-tipo: #7038f8; } /* Dragón */
+
+
+.tabla-envoltura {
+    overflow-x: auto;
+    background: var(--blanco);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla th,
+.tabla td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+}
+
+.tabla thead {
+    background: var(--rojo);
+    color: var(--blanco);
+}
+
+.tabla tbody tr:nth-child(even) {
+    background: #fafafa;
+}
+
+.tabla tbody tr:hover {
+    background: #fff1ee;
+}
+
+
+.tarjeta-gym {
+    background: var(--blanco);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    padding: 1.2rem 1.4rem;
+    border-left: 6px solid var(--rojo);
+}
+
+.tarjeta-gym h3 {
+    margin-bottom: 0.5rem;
+}
+
+.tarjeta-gym p {
+    font-size: 0.93rem;
+}
+
+
+.pie {
+    background: var(--texto);
+    color: #d1d5db;
+    text-align: center;
+    padding: 1.2rem;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+    .encabezado {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .grilla {
+        grid-template-columns: 1fr;
+    }
+}
+
+.tarjeta-acciones {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+
+.btn-crud {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px; 
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    color: #ffffff !important; 
+    transition: background-color 0.2s ease;
+}
+
+
+.btn-editar {
+    background-color: #0d6efd;
+}
+
+.btn-editar:hover {
+    background-color: #0b5ed7;
+}
+
+
+.btn-eliminar-rojo {
+    background-color: #b52b2b;
+}
+
+.btn-eliminar-rojo:hover {
+    background-color: #a02222;
+}
+
+
+.seccion-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.btn-nuevo {
+    background-color: #ff3e1d;
+    padding: 10px 24px;
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-nuevo:hover {
+    background-color: #e32b0f;
+}
