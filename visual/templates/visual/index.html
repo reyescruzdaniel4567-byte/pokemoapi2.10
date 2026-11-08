@@ -4,6 +4,16 @@
 
 {% block contenido %}
 
+    <!-- Buscador -->
+    <section id="buscador" class="seccion">
+        <form method="get" action="{% url 'buscar' %}" class="buscador">
+            <input type="text" name="q"
+                   placeholder="Buscar Pokémon por nombre..."
+                   class="buscador-input" required>
+            <button type="submit" class="btn-nuevo buscador-boton">Buscar</button>
+        </form>
+    </section>
+
     <section id="pokemons" class="seccion">
         <div class="seccion-encabezado">
             <h2>Pokémon</h2>
@@ -39,8 +49,7 @@
                     </ul>
 
                     <p class="descripcion">{{ pokemon.descripcion }}</p>
-                  
-                    
+
                     <div class="tarjeta-acciones">
                         <a href="{% url 'pokemon_editar' pokemon.pk %}" class="btn-crud btn-editar">Editar</a>
                         <a href="{% url 'pokemon_eliminar' pokemon.pk %}" class="btn-crud btn-eliminar-rojo">Eliminar</a>
@@ -53,7 +62,6 @@
         </div>
     </section>
 
-   
     <section id="entrenadores" class="seccion">
         <div class="seccion-encabezado">
             <h2>Entrenadores</h2>
@@ -97,6 +105,20 @@
         </div>
     </section>
 
+    <!-- Mapa interactivo de Folium -->
+    <section id="mapa-gimnasios-seccion" class="seccion">
+        <div class="seccion-encabezado">
+            <h2>Ubicación en Tiempo Real</h2>
+        </div>
+        <div style="width: 100%; height: 450px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); background-color: #f8f9fa;">
+            {% if mapa %}
+                {{ mapa|safe }}
+            {% else %}
+                <p class="vacio" style="padding: 40px 0;">El mapa no se pudo cargar correctamente.</p>
+            {% endif %}
+        </div>
+    </section>
+
     <section id="gimnasios" class="seccion">
         <div class="seccion-encabezado">
             <h2>Gimnasios</h2>
@@ -109,7 +131,7 @@
                 <h3>Gimnasio {{ gimnasio.naturaleza_del_gym }}</h3>
                 <p><strong>Líder:</strong> {{ gimnasio.lider_del_gym.nombre }} {{ gimnasio.lider_del_gym.apellido }}</p>
                 <p><strong>Medalla:</strong> {{ gimnasio.medallas }}</p>
-                
+
                 <div class="tarjeta-acciones">
                     <a href="{% url 'gimnasio_editar' gimnasio.pk %}" class="btn-crud btn-editar">Editar</a>
                     <a href="{% url 'gimnasio_eliminar' gimnasio.pk %}" class="btn-crud btn-eliminar-rojo">Eliminar</a>

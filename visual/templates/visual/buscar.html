@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscar Pokémon</title>
+  <link rel="stylesheet" href="{% static 'visual/css/buscar.css' %}">
+</head>
+<body>
+
+  <h1>Buscar Pokémon</h1>
+
+  <form method="get" action="{% url 'buscar' %}" class="form-busqueda">
+    <input type="text" name="q" value="{{ q }}" placeholder="Nombre del Pokémon" autofocus>
+    <button type="submit">Buscar</button>
+  </form>
+
+  {% if buscado %}
+    {% if pokemons %}
+      <p class="cantidad">{{ pokemons|length }} resultado{{ pokemons|length|pluralize }} para "{{ q }}"</p>
+
+      <div class="resultados">
+        {% for p in pokemons %}
+        <div class="tarjeta">
+
+          {% if p.imagen %}
+            <img src="{{ p.imagen.url }}" alt="{{ p.nombre }}" class="tarjeta-imagen">
+          {% endif %}
+
+          <h2 class="tarjeta-titulo">{{ p.nombre }}</h2>
+
+          <p class="dato"><strong>Naturaleza:</strong> {{ p.get_naturaleza_display }}</p>
+          <p class="dato"><strong>Peso:</strong> {{ p.peso }} kg</p>
+          <p class="dato"><strong>Habilidades:</strong> {{ p.habilidades }}</p>
+          <p class="dato">
+            <strong>Entrenador:</strong>
+            {% if p.entrenador %}
+              {{ p.entrenador.nombre }} {{ p.entrenador.apellido }}
+            {% else %}
+              <span class="texto-vacio">Sin entrenador</span>
+            {% endif %}
+          </p>
+          <p class="descripcion">{{ p.descripcion }}</p>
+
+        </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="vacio">No se encontró ningún Pokémon con el nombre "{{ q }}".</p>
+    {% endif %}
+  {% endif %}
+
+  <p class="volver">
+    <a href="/" class="btn-volver">← Volver a la página principal</a>
+  </p>
+
+</body>
+</html>

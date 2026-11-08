@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+      
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 style="font-weight: bold; color: #333;"> Ubicación de Gimnasios Pokémon</h2>
+                <a href="{% url 'index' %}" class="btn btn-outline-secondary">Volver a la Lista</a>
+            </div>
+
+         
+            <div class="card shadow" style="border-radius: 15px; overflow: hidden; border: none;">
+                <div class="card-header bg-danger text-white py-3">
+                    <h5 class="card-title mb-0" style="font-weight: 600;">Mapa en Tiempo Real </h5>
+                </div>
+                <div class="card-body p-0">
+                    
+                    <div style="width: 100%; height: 550px;">
+                        {{ mapa|safe }}
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-muted text-center mt-3">
+                <small>* Haz clic sobre los marcadores de estrella para ver los detalles del Líder de Gimnasio y su Medalla</small>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

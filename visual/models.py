@@ -9,15 +9,16 @@ class Entrenador(models.Model):
     def __str__(self):
         return f'{self.id_documento} {self.nombre} {self.apellido} {self.medallas}'
 
-
 class Gimnasio(models.Model):
+    nombre = models.CharField(max_length=100, default="Gimnasio Pokémon") 
     lider_del_gym = models.ForeignKey(Entrenador, on_delete=models.CASCADE, related_name='gimnasios')
     naturaleza_del_gym = models.CharField(max_length=30)
     medallas = models.CharField(max_length=30)
+    latitud = models.FloatField(default=4.5981)   
+    longitud = models.FloatField(default=-74.1297) 
 
     def __str__(self):
-        return f'{self.lider_del_gym } {self.medallas} {self.naturaleza_del_gym}'
-
+        return f'{self.nombre} - {self.lider_del_gym} ({self.medallas})'
 
 class Pokemon(models.Model):
     tipo_naturaleza = [
